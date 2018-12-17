@@ -1,0 +1,16 @@
+<div *ngIf="place">
+  <form  (submit)="update(place._id)">
+    <input type="text" name="place.name" [(ngModel)]="place.name" placeholder="name">
+    <p *ngIf="errors.name"> {{errors.name.message}}</p>
+    <br>
+    <input type="text" name="place.cuisine_type" [(ngModel)]="place.cuisine_type" placeholder="cuisine_type">
+    <p *ngIf="errors.cuisine_type"> {{errors.cuisine_type.message}}</p>
+    <br>
+    <textarea name="place.description" [(ngModel)]="place.description" rows=5 cols=50></textarea>
+    <p *ngIf="errors.description"> {{errors.description.message}}</p>
+    <br>
+    <input type="submit" value="Update a place"/>
+    <button (click) = "delete(place._id)">Delete</button>
+    <button (click) = "cancel(place._id)">Cancel</button>
+  </form>
+</div>

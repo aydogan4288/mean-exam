@@ -1,0 +1,37 @@
+<div *ngIf="place">
+  <h1>{{place.name}}</h1>
+  <p>Style: {{place.cuisine_type}}</p>
+  <p>Description: {{place.description}}</p>
+  <p>Rating: {{place.avgreview}}</p>
+
+  <div class="scrollables">
+    <div *ngFor="let r of place.reviews">
+      <hr>
+      <p>Name: {{r.name}}</p>
+      <p>Comment: {{r.comment}}</p>
+      <p>Rating: {{r.rating}}</p>
+    </div>
+ </div>
+</div>
+
+
+    <form (submit)="newRating(place._id)">
+       <p>Name: <input type="text" name="newreview.name" [(ngModel)]="newreview.name" /></p>
+       <p *ngIf="errors.name"> {{errors.name.message}}</p>
+       <p>Rating:
+         <select name="newreview.rating" [(ngModel)]="newreview.rating">
+           <option value="5">★★★★★</option>
+           <option value="4">★★★★☆</option>
+           <option value="3">★★★☆☆</option>
+           <option value="2">★★☆☆☆</option>
+           <option value="1">★☆☆☆☆</option>
+         </select>
+       </p>
+       <p>Comment here:
+         <br>
+         <textarea name="newreview.comment" [(ngModel)]="newreview.comment" cols=50 rows=5></textarea>
+       </p>
+
+       <input type="submit" value="Leave a review!" />
+    </form>
+    <button (click) = "cancel(place._id)">Cancel</button>
